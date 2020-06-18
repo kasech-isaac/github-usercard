@@ -3,6 +3,48 @@
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+axios.get('https://api.github.com/users/kasech-isaac')
+.then((response)=>{
+let theCard=githubCard(response.data)
+newCard.appendChild(theCard)
+// console.log(response)
+})
+.catch((error)=>{
+  console.log('no info:', error)
+})
+
+axios.get('https://api.github.com/users/tetondan')
+.then((response)=>{
+let theCard=githubCard(response.data)
+newCard.appendChild(theCard)
+// console.log(response)
+})
+.catch((error)=>{
+  console.log('no info:', error)
+})
+
+axios.get('https://api.github.com/users/dustinmyers')
+.then((response)=>{
+let theCard=githubCard(response.data)
+newCard.appendChild(theCard)
+// console.log(response)
+})
+.catch((error)=>{
+  console.log('no info:', error)
+})
+
+axios.get('https://api.github.com/users/bigknell')
+.then((response)=>{
+let theCard=githubCard(response.data)
+newCard.appendChild(theCard)
+// console.log(response)
+})
+.catch((error)=>{
+  console.log('no info:', error)
+})
+
+
+
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -28,7 +70,7 @@
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+// const followersArray = [ 'tetondan', 'dustinmyers', 'justsml', 'luishrd',  'bigknell'];
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -58,3 +100,56 @@ const followersArray = [];
     luishrd
     bigknell
 */
+
+
+function githubCard(object){
+  
+  const card= document.createElement('div')
+  card.classList.add('card')
+
+  const imag= document.createElement('img')
+
+  const cardInfo= document.createElement('div')
+  cardInfo.classList.add('name')
+
+
+  const userName = document.createElement('p')
+  userName.classList.add('username')
+
+
+  const name= document.createElement('h3')
+  name.classList.add('name')
+
+  const location = document.createElement('p')
+
+  const Profile= document.createElement('p')
+  const link= document.createElement('a')
+  const followers= document.createElement('p')
+  const following =document.createElement('p')
+  const userBio =document.createElement('p')
+
+
+    imag.src=object.avatar_url;
+    name.textContent=object.name;
+    userName.textContent=object.login;
+    location.textContent=(`location: ${object.location}`);
+    Profile.textContent=(`profile: ${link}`)
+    link.textContent=object.html_url;
+    followers.textContent=(`followers: ${object.followers}`);
+    following.textContent=(`following: ${object.following}`)
+    userBio.textContent=(`bio: ${object.bio}`)
+
+card.appendChild(imag);
+card.appendChild(cardInfo);
+card.appendChild(name);
+card.appendChild(userName);
+card.appendChild(location);
+card.appendChild(Profile);
+card.appendChild(followers);
+card.appendChild(following);
+card.appendChild(userBio);
+card.appendChild(link);
+
+return card;
+}
+let newCard =document.querySelector('.cards');
